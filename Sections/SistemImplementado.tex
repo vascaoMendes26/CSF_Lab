@@ -1,0 +1,30 @@
+\section{Sistema Implementado}
+
+\subsection{1ª Fase}
+
+\subsubsection{Análise teórica}
+
+Na fase inicial deste trabalho foram escolhidos 3 pontos distintos, em 3 zonas dentro do campus
+distintas(Avenida principal, entre Ed. X e Ed. 7 e dentro do piso 1 Ed. X), onde é possível ver na figura
+\ref{fig:Pontos}.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=10cm]{Images/PontosAnalise.png}
+    \caption{Pontos marcados no Google Earth}
+    \label{fig:Pontos}
+\end{figure}
+
+Após terem sido marcados os pontos no mapa, com a ferramenta de medir distância 
+do Google Earth, medímos a distância de cada ponto à antena colocando essas métricas num 
+ficheiro excel para ser usado nos cálculos das equações \ref{eq:LFSPL} e \ref{eq:pr}.
+
+Foram usados dois modelos para calcular o Path Loss: 
+Para os 800 MHz é o COST 231, simples mas não tem em conta atenuações para os 3.4 GHz foi usado o alpha-beta-gamma(ABG),
+este que é um pouco mais complexo, mas tem como grande vantagem a aplicação de coeficientes distintos($\alpha,\beta, \gamma$) dependendo se o recetor se encontra
+em condição de Line of Sight(LOS) ou obstruído (NLOS), obtendo assim uma maior precisão perante obstáculos físicos.
+
+
+
+
+
