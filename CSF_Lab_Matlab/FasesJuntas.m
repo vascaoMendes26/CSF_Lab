@@ -1,6 +1,12 @@
-mode = 'QPSK'; % 'QPSK', '64QAM' ou '256QAM'
+clear all;
+close all; 
+clc;
+mode = '256QAM'; % 'QPSK', '64QAM' ou '256QAM'
 CHANNEL='RAYL'; % 'AWGN', 'RAYL', 'REAL', 'XTAP', 'RRND'
+SYSTEM = 'OFDM'; % 'OFDM', 'SCFD'
 L=4; % L-th order diversity
+FASE = 1; %Fase 1 s/Amplificador Fase 2 c/Amplificador
+p_rapp = 1; %p_rapp = 100->Ideal p_rapp = 1->N_Ideal
 
 if strcmp(mode,'QPSK')
     M      = 4; % 4QPSK
@@ -49,7 +55,8 @@ NErr=zeros(NEN,1);
 
 for nn=1:NSlot
     
-    if (CHANNEL=='REAL')
+    % --- GERAÇÃO DO CANAL ---
+    if strcmp(CHANNEL,'REAL')
         Hk=zeros(N,L); 
         for l=1:L
             alpha=alpha_med.*(randn(NRay,1)+j*randn(NRay,1))/sqrt(2);
@@ -57,7 +64,7 @@ for nn=1:NSlot
                 Hk(:,l)=Hk(:,l)+alpha(nRay)*exp(-j*2*pi*f*tau(nRay));
             end;
         end; 
-    elseif (CHANNEL=='XTAP')
+    elseif strcmp(CHANNEL,'XTAP')
         Hk=zeros(N,L); 
         for l=1:L
             alpha=alpha_med.*(randn(NRay,1)+j*randn(NRay,1))/sqrt(2);
@@ -65,7 +72,7 @@ for nn=1:NSlot
                 Hk(:,l)=Hk(:,l)+alpha(nRay)*exp(-j*2*pi*f*tau(nRay));
             end;
         end;
-    elseif (CHANNEL=='RRND')
+    elseif strcmp(CHANNEL,'RRND')
         Hk=zeros(N,L); 
         tau=rand(NRay,1)*Tg;
             for l=1:L
@@ -74,36 +81,97 @@ for nn=1:NSlot
                     Hk(:,l)=Hk(:,l)+alpha(nRay)*exp(-j*2*pi*f*tau(nRay));
                 end;
             end; 
-    elseif (CHANNEL=='RAYL')
+    elseif strcmp(CHANNEL,'RAYL')
         Hk=(randn(N,L)+j*randn(N,L))/sqrt(2);
-    elseif (CHANNEL=='AWGN')
+    elseif strcmp(CHANNEL,'AWGN')
         Hk=ones(N,L).*exp(j*2*pi*rand(N,L));
     end;
     H2k=abs(Hk).^2;
     if (L==1) sH2k=H2k; else sH2k=sum(H2k')'; end;
     
-    Tx_Data = randi([0 M-1], N, 1);     % Gera inteiros
-    Ak_Tx = qammod(Tx_Data, M);         % Modula corretamente
+    % --- TRANSMISSOR ---
+    Tx_Data = randi([0 M-1], N, 1);      % Gera inteiros
+    Ak_Tx = qammod(Tx_Data, M);          % Modula corretamente
+    
     % --------------------------------------------------
 
-    an_Tx=fftshift(ifft(fftshift(Ak_Tx)));
+    if (FASE == 1)
+        % --- FASE 1: AMPLIFICADOR IDEAL ---
+        if strcmp(SYSTEM, 'OFDM')
+            an_Tx = fftshift(ifft(fftshift(Ak_Tx)));
+            Tx_To_Channel = fftshift(fft(fftshift(an_Tx))); 
+        elseif strcmp(SYSTEM, 'SCFD')
+            an_Tx = Ak_Tx;
+            Tx_To_Channel = fftshift(fft(fftshift(an_Tx))); 
+        end 
+
+    elseif (FASE == 2)
+        % --- FASE 2: AMPLIFICADOR REAL (RAPP) ---
+        if strcmp(SYSTEM, 'OFDM') 
+            
+            an_Tx=fftshift(ifft(fftshift(Ak_Tx))); 
+            
+            % Amplificador é no tempo
+            amplitude_tx = abs(an_Tx);
+            phase_tx = angle(an_Tx);
+
+            Ssat = 1; 
+            amplitude_tx_mean = mean(amplitude_tx); 
+            p = p_rapp; 
+            satlevel = amplitude_tx_mean*10^(Ssat/10);
+
+            A = amplitude_tx./(1+(amplitude_tx./satlevel).^(2*p)).^(1/(2*p));
+            an_Tx_Distorted = A.*exp(j*phase_tx); 
+            
+            % Volta para Frequência 
+            Tx_To_Channel = fftshift(fft(fftshift(an_Tx_Distorted)));
+
+        elseif strcmp(SYSTEM, 'SCFD') 
+            
+            % SC-FDE: Símbolos já estão no Tempo
+            an_Tx = Ak_Tx;
+
+            amplitude_tx = abs(an_Tx);   
+            phase_tx = angle(an_Tx);     
+
+            Ssat = 1; 
+            amplitude_tx_mean = mean(amplitude_tx); 
+            p = p_rapp; 
+            satlevel = amplitude_tx_mean*10^(Ssat/10);
+
+            A = amplitude_tx./(1+(amplitude_tx./satlevel).^(2*p)).^(1/(2*p));
+            an_Tx_Distorted = A.*exp(j*phase_tx); 
+            
+            % Volta para Frequência 
+            Tx_To_Channel = fftshift(fft(fftshift(an_Tx_Distorted)));
+            
+        else
+            error(['ERRO CRÍTICO: O sistema "', SYSTEM, '" não existe.']);
+        end
+    end
     
-    for nEN=1:NEN
+    % --- CANAL E RECETOR ---
+     for nEN=1:NEN
         Yk=zeros(N,L);
         for l=1:L
-            Yk(:,l)=Ak_Tx.*Hk(:,l)+(randn(N,1)+j*randn(N,1))*sigma(nEN);
+            Yk(:,l)=Tx_To_Channel.*Hk(:,l)+(randn(N,1)+j*randn(N,1))*sigma(nEN);
         end;
         YIk=0;
         for l=1:L
             YIk = YIk +Yk(:,l).*conj(Hk(:,l));
         end;
-        YIk=YIk./sH2k;
-
-        % --- ALTERAÇÃO ESTRITAMENTE NECESSÁRIA PARA QAM ---
-        Rx_Data = qamdemod(YIk, M);                     % Desmodula
-        [numBitsErr, ~] = biterr(Tx_Data, Rx_Data, log2(M)); % Conta bits
+        YIk=YIk./sH2k; % Sinal Equalizado na Frequência
+        
+        % --- BLOCO DO RECETOR ---
+        if strcmp(SYSTEM, 'OFDM')
+            Rx_Symbols = YIk;
+        elseif strcmp(SYSTEM, 'SCFD')
+            Rx_Symbols = fftshift(ifft(fftshift(YIk)));
+        end
+        
+        Rx_Data = qamdemod(Rx_Symbols, M);                   
+        [numBitsErr, ~] = biterr(Tx_Data, Rx_Data, log2(M)); 
         NErr(nEN,1)=NErr(nEN,1)+numBitsErr;
-        % --------------------------------------------------
     end;
 
     if (rem(nn,100)==0) nn, end;
@@ -127,11 +195,13 @@ xlabel('E_b/N_0(dB)'),ylabel('BER')
 axis([-5 50 1e-4 1])
 %pause,clf;
 
-
-%%%%%%%%%%%%%%%d%
+%--------------
 %Explicação Plots: 
 %Linha (Azul fina): "O ideal se usasses modulação simples (QPSK)."
 %Linha (Verde): "O teu sistema MQAM a funcionar. Precisa de mais sinal que o QPSK (Azul), mas desce rápido se o canal é estável (AWGN)."
 %Linha da Direita (Azul estrelada): "O pesadelo do Fading (Rayleigh). Está lá só para mostrar como o canal seria mau se não fosse AWGN."
-%%%%%%%%%%%%%%%
-%
+%---------------
+%Explicação de Variaveis:
+%Ak -> Sempre que temos Ak tamos a passar amplittude para freq;
+%An -> Sempre que temos An tamos a passar amplitutde para tempo;
+%---------------

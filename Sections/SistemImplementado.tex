@@ -25,6 +25,60 @@ este que é um pouco mais complexo, mas tem como grande vantagem a aplicação d
 em condição de Line of Sight(LOS) ou obstruído (NLOS), obtendo assim uma maior precisão perante obstáculos físicos.
 
 
+Numa próxima etapa desta fase foi desenvolvido um simulador em Matlab para um sistema baseada em OFDM (Modulação por Divisão de Frequência Ortogonal),
+utilizando 512 subportadores e outro sistema baseado em SC-FDE (Portadora Única com Equalização no Domínio da Frequência). 
+Ambos os sistemas permitem analisar a propagação dos sianis codificados com esquemas de modulação QPSK, 64-QAM e 256-QAM e para canais AWGN (Ruído Gaussiano Branco Aditivo) e canais com fadding de Rayleigh, este que representa o pior caso para comunicação.
+Além disto foi simulada a diversidade espacial na recepção, utilizando 4 antenas.
+Nas Figura \ref{fig:BlocosOFDM}  e \ref{fig:BlocosSCFDE} é apresentado os diagramas de blocos do simulador tanto para OFDM quanto para SC-FDE onde é possível ver as diferenças entre ambos.
 
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=10cm]{Images/BlocosOFDM.png}
+    \caption{Diagrama de Blocos para o sistema implementado para um sistema OFDM}
+    \label{fig:BlocosOFDM}
+\end{figure}
+
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=10cm]{Images/BlocosSCFDE.png}
+    \caption{Diagrama de Blocos para o sistema implementado para um sistema SC-FDE}
+    \label{fig:BlocosSCFDE}
+\end{figure}
+
+
+\subsubsection{Arquitetura do Sistema}
+
+O sistema de transmissão implementado tem um estrutura de blocos dividida em Emissor, Canal e Recetor. Estes que são comuns em ambos os modos (OFDM e SC-FDE). O emissor gera os dados e a
+modulação (mapeamento de bits para símbolos via QPSK, 64-QAM ou 256-QAM). Após isso é colocado um Prefixo Cíclico (CP), retirando a interferência Inter-Simbólica (ISI), devido ao canal ser dispersivo.
+
+\subsubsection{Canal de Comunicação}
+
+\begin{itemize}
+    \item Ruído: AWGN (Additive White Gaussian Noise), este que demonstra o melhor cenário possível, contendo apenas ruído térmico e adensidade espectral de potência é constante;
+    \item Desvanecimento: Modelo de Rayleigh, modela um ambiente de propagação mais realista, onde existe ausência de linha de vista (LOS) entre o emissor e recetor. 
+\end{itemize}
+
+
+\subsubsection{Diferenciação: OFDM vs SC-FDE}
+
+Como foi abordado na componente teórica da unidade curricular a principal destrinçaõ entre estas duas técnicas está no processamento do sinal 
+nos domínios do tempo e da frequência, isso é possível ser visto nas Figuras \ref{fig:BlocosOFDM} e \ref{fig:BlocosSCFDE}.
+
+\subsubsection{Análise de Desempenho}
+
+Para avaliarmos a qualidade da comunicação iremos nos basear na análise de erros, comparando os bits transmitidos com os recebidos 
+com isso podemos calcular o bit error rate (BER), tento uma meta de $10_{-4}$, analisando qual o valor de SNR necessário para obter este desempenho.
+
+\subsection{2ª Fase}
+
+Na segunda fase do trabalho, foi implementado um bloco de amplificação  no emissor do sistema
+com a finalidade de analisar o impacto de diversos níveis de amplificação e quais os impactos que farão 
+no SNR para as modulações e canais utilizados. Voltando para as Figuras \ref{fig:BlocosOFDM} e \ref{fig:BlocosSCFDE} 
+o bloco de amplificação foi implementado logo após o bloco do prefixo ciclico. 
+Este amplificador baseia-se no tipo SSPA(Solid State Power Amplifiear), a característica de conversão AM/AM é descrita na Equação \ref{eq:Rapp}.
+
+Os valores de amplificação utilizados foram p=1, p=2, p=10 e p=50, estes valores foram escolhidos
+com o objetivo de analisar a não linearidade do amplificador sendo que para o valor de p=100  este é muito próximo da zona linear.
 
 

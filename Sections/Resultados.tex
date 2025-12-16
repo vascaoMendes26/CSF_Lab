@@ -1,0 +1,84 @@
+\section{Resultados}
+
+\subsection{Fase 1}
+
+\subsubsection{Resultados obtidos através de modelos matemáticos}
+
+Como foi explicado no capítulo anterior, foram retiradas as distâncias dos pontos para usar nos cálculos teóricos 
+de modo a ser possível comparar os valores teóriocos para path loss, potência recebida para três casos possíveis, antena a emitir a 250mW, 2W e a 20W, por
+fim foram calculados os respetivos valores de SNR para dois valores típicos de Noise Floor, 95dBm e 105dBm.
+Como o ficheiro é bastante extenso, este irá encontrar-se em anexo com os respetivos resultados, nesta subsubsecção iremos mostrar como foram obtidos os resultados
+e apenas os que serviram de comparação para a próxima subsubsecção. A ordem dos pontos na tabela está de acordo com os nomes da figura \ref{fig:Pontos},
+sendo que a ordem é Avenida do 7 -> entre Ed. X e Ed.7 -> Piso 1 Ed.X. 
+
+
+
+\subsubsection{Teste e medições práticas}
+
+
+
+
+\subsubsection{Comparação e analíse dos resultados teóricos com os resultados práticos}
+
+
+
+
+
+
+
+\subsubsection{SNR necessário}
+
+Como referido no capítulo anteriror, atrvés do software em Matlab, foi possível concluir quais os valores de SNR que devem ser garantidos para as modulações QPSK, 64-QAM e 256-QAM, 
+de forma a ober um desempenho de BER  de $10^{-4}$, para canais AWGN e Rayleigh com e sem diversidade na receção. 
+
+Os gráficos seguintes irão representar os valores de SNR necessários para as especificações dadas, a linha azul representa o valor teórico para o canal AWGN, a linha azul com asteriscos
+é o valor teórico para o canal de Rayleigh e a linha verde é o resultado da simulação realizada.
+
+
+\begin{table}[h]
+    \centering
+    \caption{Relação SNR necessária para diferentes esquemas de modulação e diversidade em canais AWGN e Rayleigh garantido um BER de $10^{-4}$.}
+    \label{tab:performance_modulacao} 
+    
+    \vspace{0.2cm} 
+\begin{tabular}{cccc}
+\toprule
+\textbf{Canal} & \textbf{Modulação} & \textbf{SNR} & \textbf{Diversidade} \\
+\midrule
+AWGN & QPSK   &  dB  & 1 \\
+AWGN & QPSK   &  dB  & 4 \\
+RAYL & QPSK   &  dB & 1 \\
+RAYL & QPSK   &  dB  & 4 \\
+\midrule
+AWGN & 64-QAM &  dB & 1 \\
+AWGN & 64-QAM &  dB & 4 \\
+RAYL & 64-QAM &  dB & 1 \\
+RAYL & 64-QAM &  dB & 4 \\
+\midrule
+% Valores estimados para 256-QAM baseados em tendências teóricas
+AWGN & 256-QAM &  dB & 1 \\
+AWGN & 256-QAM &  dB & 4 \\
+RAYL & 256-QAM &  dB & 1 \\
+RAYL & 256-QAM &  dB & 4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\textcolor{red}{Justificar a tabela com os valores preenchdios na tabela}
+
+\subsubsection{Diversidade e diferença de canais}
+
+\subsubsection{Densidades de energia por m2, a potência recebida e o noise floor requerido
+no receptor}
+
+
+\subsection{Fase 2}
+
+Nesta etapa, com o objetivo de avaliar o impacto da não-linearidade do 
+amplificador na qualidade de transmissão, procedeu-se à análise das curvas de BER em função do SNR 
+para a modulação QPSK, 64-QAM e 256-QAM em ambos os canais com e sem diversidade. O desempenho foi avaliado considerando diferentes fatores de suavidade do amplificador, 
+nomeadamente $p=1$, $p=2$, $p=10$ e $p=50$, estes valores foram escolhidos para ser possível uma maior comparação entre o pior caso $p=1$ onde iremos ver muita distroção e $p=50$
+numa zona quase linear. Para estes ensaios, a tensão de saturação ($S_{sat}$) foi fixada em 1 de modo 
+a forçar o amplificador a operar perto da saturação, tornando mais notórias as diferenças entres o valores de $p$.
+

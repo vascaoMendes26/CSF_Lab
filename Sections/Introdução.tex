@@ -10,7 +10,7 @@ Este trabalho encontra-se dividido em duas fases.
 
 Fase 1: Esta fase examina as densidades energéticas atingíveis, potência recebida e BER dependendo de potência, distância e condições do canal utilizando OFDM.
 
-Fase 2: Esta fase explora desempenho do OFDM e SC-FDE com diferentes modulações e condições de amplificação.
+Fase 2: Esta fase explora desempenho do OFDM e SC-FDE com diferentes modulações e condições de amplificação usando Solid State Power Amplifiear (SSPA).
 
 \subsection{Problema da SNR}
 
@@ -27,6 +27,7 @@ Num sistema de comunicação existem várias condições que afetam o SNR, os fa
 
 Esses fatores determinam a potência mínima necessária no recetor para que a comunicação ainda seja viável. A atenuação e a frequência influenciam diretamente a potência recebida, sendo possível calcular o 
 Loss Space Path Loss(LFSPL), através da equação \ref{eq:LFSPL}:
+\textcolor{red}{Mudar para expressões novas}
 
 \begin{equation}
     \text{LFSPL (dB)} \approx  32.45 + 20 \cdot \log(f, \text{MHz}) + 20 \cdot \log(r, \text{km})
@@ -39,3 +40,42 @@ E a potência recebida, equação \ref{eq:pr}:
     P_r = \text{EIRP} + G_r(\text{dB}) + 27.5 - 20\log(f, \text{MHz}) - 20\log(r, \text{meters})
     \label{eq:pr}
 \end{equation}
+
+\subsection{transmissão Multi-Portadora - OFDM}
+
+O OFDM (Orthogonal Frequency Division Multiplexing) combate a seletividade do canal dividindo a banda em subportadoras ortogonais 
+e utilizando um prefixo cíclico para eliminar a Interferência Inter-Símbolo (ISI), 
+permitindo uma equalização simples no domínio da frequência.
+ No entanto, sofre de um elevado PAPR (Peak-to-Average Power Ratio), exigindo 
+ amplificadores lineares pouco eficientes, e é sensível a erros de 
+ sincronização.
+
+\subsection{Transmissão Mono-Portadora - SC-FDE}
+Como alternativa para o uplink, o SC-FDE (Single Carrier Frequency Domain Equalization) mantém a estrutura de blocos 
+e o prefixo cíclico do OFDM, mas desloca a IFFT para o recetor. 
+Isto resulta em menores flutuações de envolvente (menor PAPR), 
+reduzindo as exigências de linearidade na amplificação, embora constelações de ordem elevada (como 64-QAM e 256-QAM) ainda apresentem desafios de distorção.
+
+\subsection{Amplificação}
+
+A eficiência energética depende criticamente da amplificação. Ao contrário do 2G (envolvente constante), as modulações atuais (4G/5G) possuem envolventes variáveis, 
+impedindo o uso de amplificadores saturados sem introduzir distorção severa.
+Neste trabalho, modela-se o Solid State Power Amplifiear  (SSPA) através do Modelo de Rapp (Equação \ref{eq:Rapp}), analisando o impacto dos parâmetros de não-linearidade ($p=1$ e $p=2$) e parâmetros mais proximos da linearidade ($p=10$ e $p=50$)
+no consumo energético e na necessidade de backoff  para manter a integridade do sinal.
+
+\begin{equation}
+    A(r) = \frac{r}{\left( 1 + \left( \frac{|r|}{S_{sat}} \right)^{2p} \right)^{\frac{1}{2P}}}
+    \label{eq:Rapp}
+\end{equation}
+
+\subsection{Potência Radiada}
+
+A evolução da potência radiada reflete as restrições de modulação explicadas acima. 
+No 2G, a envolvente constante (GMSK) permitia o uso de amplificadores saturados e potências de 400 W com alcance de 30 km. 
+Com o desenolvimento do 3G e 4G, as potências máximas caíram drasticamente passando para
+250mW a 40W, devido isso houve necessidade de  usar amplificadores lineares (SSPA) para suportar modulações de amplitude variável sem distorção.
+
+Nos dias de hoje o 5G inverte esta tendência de redução. 
+Para garantir a elevada relação sinal-ruído (SNR) exigida por constelações densas e 
+técnicas multi-portadora, a potência de emissão necessita de aumentar novamente, podendo atingir os 40 W por cadeia de transmissão.
+
