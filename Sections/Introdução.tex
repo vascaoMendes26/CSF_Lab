@@ -27,7 +27,6 @@ Num sistema de comunicação existem várias condições que afetam o SNR, os fa
 
 Esses fatores determinam a potência mínima necessária no recetor para que a comunicação ainda seja viável. A atenuação e a frequência influenciam diretamente a potência recebida, sendo possível calcular o 
 Loss Space Path Loss(LFSPL), através da equação \ref{eq:LFSPL}:
-\textcolor{red}{Mudar para expressões novas}
 
 \begin{equation}
     \text{LFSPL (dB)} \approx  32.45 + 20 \cdot \log(f, \text{MHz}) + 20 \cdot \log(r, \text{km})
@@ -37,11 +36,11 @@ Loss Space Path Loss(LFSPL), através da equação \ref{eq:LFSPL}:
 E a potência recebida, equação \ref{eq:pr}:
 
 \begin{equation}
-    P_r = \text{EIRP} + G_r(\text{dB}) + 27.5 - 20\log(f, \text{MHz}) - 20\log(r, \text{meters})
+    P_r = \text{EIRP} - LFSPL
     \label{eq:pr}
 \end{equation}
 
-\subsection{transmissão Multi-Portadora - OFDM}
+\subsection{Transmissão Multi-Portadora - OFDM}
 
 O OFDM (Orthogonal Frequency Division Multiplexing) combate a seletividade do canal dividindo a banda em subportadoras ortogonais 
 e utilizando um prefixo cíclico para eliminar a Interferência Inter-Símbolo (ISI), 

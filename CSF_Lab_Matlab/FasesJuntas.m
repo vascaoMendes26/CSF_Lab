@@ -2,11 +2,12 @@ clear all;
 close all; 
 clc;
 mode = '256QAM'; % 'QPSK', '64QAM' ou '256QAM'
-CHANNEL='RAYL'; % 'AWGN', 'RAYL', 'REAL', 'XTAP', 'RRND'
+CHANNEL='AWGN'; % 'AWGN', 'RAYL', 'REAL', 'XTAP', 'RRND'
 SYSTEM = 'OFDM'; % 'OFDM', 'SCFD'
+Ssat_value = 5;
 L=4; % L-th order diversity
-FASE = 1; %Fase 1 s/Amplificador Fase 2 c/Amplificador
-p_rapp = 1; %p_rapp = 100->Ideal p_rapp = 1->N_Ideal
+FASE = 2; %Fase 1 s/Amplificador Fase 2 c/Amplificador
+p_rapp = 3; %p_rapp = 100->Ideal p_rapp = 1->N_Ideal P=2 p=10 e p=50
 
 if strcmp(mode,'QPSK')
     M      = 4; % 4QPSK
@@ -24,7 +25,7 @@ Nbs    = log2(M); % Calcula o Num de bits por simbolo, importante para calcular 
 EN     = [-5:2:50]'+0*100; en = 10 .^(EN/10) ; % Aqui podemos mudar o valor de SNR que queremos ter mudando o array
 
 N=512;
-NSlot=1000;
+NSlot=1000; %Variar para gráfico mais curvado, aumentamos numero iteracoes
 Ts=4e-6; % Block duration
 Tg=0.2*Ts; % Cyclic prefix durration
 f=[-N/2:N/2-1]'/Ts; % frequencies
@@ -115,7 +116,7 @@ for nn=1:NSlot
             amplitude_tx = abs(an_Tx);
             phase_tx = angle(an_Tx);
 
-            Ssat = 1; 
+            Ssat = Ssat_value; 
             amplitude_tx_mean = mean(amplitude_tx); 
             p = p_rapp; 
             satlevel = amplitude_tx_mean*10^(Ssat/10);
@@ -134,7 +135,7 @@ for nn=1:NSlot
             amplitude_tx = abs(an_Tx);   
             phase_tx = angle(an_Tx);     
 
-            Ssat = 1; 
+            Ssat = Ssat_value; 
             amplitude_tx_mean = mean(amplitude_tx); 
             p = p_rapp; 
             satlevel = amplitude_tx_mean*10^(Ssat/10);
@@ -197,9 +198,9 @@ axis([-5 50 1e-4 1])
 
 %--------------
 %Explicação Plots: 
-%Linha (Azul fina): "O ideal se usasses modulação simples (QPSK)."
-%Linha (Verde): "O teu sistema MQAM a funcionar. Precisa de mais sinal que o QPSK (Azul), mas desce rápido se o canal é estável (AWGN)."
-%Linha da Direita (Azul estrelada): "O pesadelo do Fading (Rayleigh). Está lá só para mostrar como o canal seria mau se não fosse AWGN."
+%Linha (Azul fina): "O ideal modulação simples (QPSK)."
+%Linha (Verde): "O sistema MQAM a funcionar. Precisa de mais sinal que o QPSK (Azul), mas desce rápido se o canal é estável (AWGN)."
+%Linha da Direita (Azul estrelada):Rayleigh.  mostrar como o canal seria mau se não fosse AWGN."
 %---------------
 %Explicação de Variaveis:
 %Ak -> Sempre que temos Ak tamos a passar amplittude para freq;

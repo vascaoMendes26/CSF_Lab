@@ -7,36 +7,257 @@
 Como foi explicado no capítulo anterior, foram retiradas as distâncias dos pontos para usar nos cálculos teóricos 
 de modo a ser possível comparar os valores teóriocos para path loss, potência recebida para três casos possíveis, antena a emitir a 250mW, 2W e a 20W, por
 fim foram calculados os respetivos valores de SNR para dois valores típicos de Noise Floor, 95dBm e 105dBm.
-Como o ficheiro é bastante extenso, este irá encontrar-se em anexo com os respetivos resultados, nesta subsubsecção iremos mostrar como foram obtidos os resultados
+Como o ficheiro é bastante extenso, este irá encontrar-se em anexo com os respetivos resultados, na tabela  nesta subsubsecção iremos mostrar como foram obtidos os resultados
 e apenas os que serviram de comparação para a próxima subsubsecção. A ordem dos pontos na tabela está de acordo com os nomes da figura \ref{fig:Pontos},
-sendo que a ordem é Avenida do 7 -> entre Ed. X e Ed.7 -> Piso 1 Ed.X. 
+sendo que a ordem é Avenida do 7, entre o Ed. X e Ed.7 e Piso 1 do Ed.X. 
+
+Após terem sido calculadas as distâncias, calculámos o path loss para os 800MHz, segundo o modelo descrito na Equação \ref{eq:LFSPL} e para os 3.4GHz foi usado o modelo ABG, este que tem em conta 
+o local da receção de sinal nas constantes. O modelo encontra -se na Equação \ref{eq:ABG}, onde os parâmetros usados para cada constante podem ser vistos no ficheiro excel anexado. Estes valores foram definidos
+com base na distância e no quanto o sinal era obstruído antes de chegar ao utilizador. 
 
 
+\begin{equation}
+    \mathrm{PL}_{\mathrm{ABG}}(f,d) = 10\alpha \log_{10}(d_{\mathrm{m}}) + \beta + 10\gamma \log_{10}(f_{\mathrm{GHz}}) + \sigma
+    \label{eq:ABG}
+\end{equation}
+\begin{table}[ht]
+\centering
+\caption{Cálculos de Atenuação, Potência e SNR (Noise Floors -95dBm e -105dBm)}
+\label{tab:Calculos} 
+
+% O resizebox ajusta a tabela à largura da página. 
+% Como são muitas colunas, a letra ficará pequena automaticamente.
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{c|c|cc|cc|cc|cc|cc|cc|cc|cc|cc|cc|cc}
+\toprule
+\multirow{4}{*}{\textbf{Zona}} & \multirow{4}{*}{\textbf{Dist. (m)}} & \multicolumn{2}{c|}{\textbf{Atenuação}} & \multicolumn{2}{c|}{\textbf{Atenuação}} & \multicolumn{6}{c|}{\textbf{Potência Recebida ($P_{Rx}$)}} & \multicolumn{6}{c|}{\textbf{SNR (Noise Floor = -95 dBm)}} & \multicolumn{6}{c}{\textbf{SNR (Noise Floor = -105 dBm)}} \\
+ & & \multicolumn{2}{c|}{\textbf{Ar (dB)}} & \multicolumn{2}{c|}{\textbf{Total (dB)}} & \multicolumn{2}{c|}{\textbf{$P_1$ (250mW)}} & \multicolumn{2}{c|}{\textbf{$P_2$ (2W)}} & \multicolumn{2}{c|}{\textbf{$P_3$ (20W)}} & \multicolumn{2}{c|}{\textbf{SNR 1}} & \multicolumn{2}{c|}{\textbf{SNR 2}} & \multicolumn{2}{c|}{\textbf{SNR 3}} & \multicolumn{2}{c|}{\textbf{SNR 1}} & \multicolumn{2}{c|}{\textbf{SNR 2}} & \multicolumn{2}{c}{\textbf{SNR 3}} \\
+ & & \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{(dBm)} & \multicolumn{2}{c|}{(dBm)} & \multicolumn{2}{c|}{(dBm)} & \multicolumn{2}{c|}{(dB)} & \multicolumn{2}{c|}{(dB)} & \multicolumn{2}{c|}{(dB)} & \multicolumn{2}{c|}{(dB)} & \multicolumn{2}{c|}{(dB)} & \multicolumn{2}{c}{(dB)} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10} \cmidrule(lr){11-12} \cmidrule(lr){13-14} \cmidrule(lr){15-16} \cmidrule(lr){17-18} \cmidrule(lr){19-20} \cmidrule(lr){21-22} \cmidrule(lr){23-24}
+ & & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} & \textbf{F1} & \textbf{F2} \\
+\midrule
+
+% ZONA 1
+\multirow{3}{*}{\shortstack{1\\(LOS)}} 
+ & 145,83 & 73,79 & 88,74 & 73,79 & 88,74 & -49,79 & -64,74 & -40,79 & -55,74 & -30,79 & -45,74 & 45,21 & 30,26 & 54,21 & 39,26 & 64,21 & 49,26 & 55,21 & 40,26 & 64,21 & 49,26 & 74,21 & 59,26 \\
+ & 183,17 & 75,77 & 90,72 & 75,77 & 90,72 & -51,77 & -66,72 & -42,77 & -57,72 & -32,77 & -47,72 & 43,23 & 28,28 & 52,23 & 37,28 & 62,23 & 47,28 & 53,23 & 38,28 & 62,23 & 47,28 & 72,23 & 57,28 \\
+ & 243,10 & 78,23 & 93,18 & 78,23 & 93,18 & -54,23 & -69,18 & -45,23 & -60,18 & -35,23 & -50,18 & 40,77 & 25,82 & 49,77 & 34,82 & 59,77 & 44,82 & 50,77 & 35,82 & 59,77 & 44,82 & 69,77 & 54,82 \\ \midrule
+
+% ZONA 2
+\multirow{3}{*}{\shortstack{2\\(NLOS)}} 
+ & 302,69 & 80,13 & 88,31 & 86,13 & 88,31 & -62,13 & -64,31 & -53,13 & -55,31 & -43,13 & -45,31 & 32,87 & 30,69 & 41,87 & 39,69 & 51,87 & 49,69 & 42,87 & 40,69 & 51,87 & 49,69 & 61,87 & 59,69 \\
+ & 311,83 & 80,39 & 91,08 & 86,39 & 91,08 & -62,39 & -67,08 & -53,39 & -58,08 & -43,39 & -48,08 & 32,61 & 27,92 & 41,61 & 36,92 & 51,61 & 46,92 & 42,61 & 37,92 & 51,61 & 46,92 & 61,61 & 56,92 \\
+ & 331,88 & 80,93 & 94,53 & 86,93 & 94,53 & -62,93 & -70,53 & -53,93 & -61,53 & -43,93 & -51,53 & 32,07 & 24,47 & 41,07 & 33,47 & 51,07 & 43,47 & 42,07 & 34,47 & 51,07 & 43,47 & 61,07 & 53,47 \\ \midrule
+
+% ZONA 3
+\multirow{3}{*}{\shortstack{3\\(NLOS)}} 
+ & 335,45 & 81,02 & 118,23 & 111,02 & 118,23 & -87,02 & -94,23 & -78,02 & -85,23 & -68,02 & -75,23 & 7,98 & 0,77 & 16,98 & 9,77 & 26,98 & 19,77 & 17,98 & 10,77 & 26,98 & 19,77 & 36,98 & 29,77 \\
+ & 320,78 & 80,64 & 121,70 & 110,64 & 121,70 & -86,64 & -97,70 & -77,64 & -88,70 & -67,64 & -78,70 & 8,36 & -2,70 & 17,36 & 6,30 & 27,36 & 16,30 & 18,36 & 7,30 & 27,36 & 16,30 & 37,36 & 26,30 \\
+ & 349,34 & 81,38 & 126,00 & 111,38 & 126,00 & -87,38 & -102,00 & -78,38 & -93,00 & -68,38 & -83,00 & 7,62 & -7,00 & 16,62 & 2,00 & 26,62 & 12,00 & 17,62 & 3,00 & 26,62 & 12,00 & 36,62 & 22,00 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
 
 \subsubsection{Teste e medições práticas}
 
+Com o equipamento fornecido pela Vodafone, foi possível fazer as medições nos mesmos locais dos nossos pontos que foram calculados teoricamente. Um exemplo de uma medição feita
+no ponto\_3X (Tabela \ref{tab:performance_modulacao}), pode ser vista na figura \ref{fig:TesteVoda}.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3cm]{Images/VodafoneEquipamento.png}
+    \caption{Exemplo de um teste realizado no ponto3\_X}
+    \label{fig:TesteVoda}
+\end{figure}
+
+Na Tabela \ref{tab:Campo}, está um resumo dos dados obtidos na prática, nos mesmos pontos da Tabela \ref{tab:Calculos}.
+
+\begin{table}[h!]
+\centering
+\caption{Dados de Campo: Potência Recebida e SINR}
+\label{tab:Campo}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+\multirow{3}{*}{\textbf{Pontos Faculdade}} & \multirow{3}{*}{\textbf{Distância (m)}} & \multicolumn{2}{c}{\textbf{Potência Recebida}} & \multicolumn{2}{c}{\textbf{SINR}} \\
+ & & \multicolumn{2}{c}{\textbf{(Dados de Campo) [dBm]}} & \multicolumn{2}{c}{\textbf{(Dados de Campo) [dB]}} \\ 
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} 
+ & & \textbf{F1 (800MHz)} & \textbf{F2 (3.4GHz)} & \textbf{F1 (800MHz)} & \textbf{F2 (3.4GHz)} \\ 
+\midrule
+
+% ZONA 1
+\multirow{3}{*}{1 (LOS\_Exterior)} 
+ & 145,83 & -62,000 & -68,000 & 22,000 & 38,000 \\ 
+ & 183,17 & -71,000 & -76,000 & 2,000 & 35,000 \\ 
+ & 243,10 & -65,000 & -73,000 & 19,000 & 22,000 \\ 
+\midrule
+
+% ZONA 2
+\multirow{3}{*}{2 (NLOS\_Exterior)} 
+ & 302,69 & -58,000 & -71,000 & 21,000 & 21,000 \\ 
+ & 311,83 & -80,000 & -86,000 & 5,000 & 18,000 \\ 
+ & 331,88 & -81,000 & -92,000 & 9,000 & 24,000 \\ 
+\midrule
+
+% ZONA 3
+\multirow{3}{*}{3 (NLOS\_Interior)} 
+ & 335,45 & -84,000 & -81,000 & 15,000 & 35,000 \\ 
+ & 320,78 & -102,000 & -107,000 & 9,000 & 10,000 \\ 
+ & 349,34 & -84,000 & -102,000 & 12,000 & 4,000 \\ 
+\bottomrule
+\end{tabular}%
+}
+\end{table}
 
 
 \subsubsection{Comparação e analíse dos resultados teóricos com os resultados práticos}
 
-
-
-
-
+A comparação entre os valores teóricos e práticos revelaram discrepâncias esperadas devido à simplificação dos modelos face
+ à complexidade real (ignorando perdas de cabos ou ganhos de antena). 
+ Na Zona 1 LOS, os valores teóricos foram otimistas, e como era esperado o modelo ABG a 3.4 GHz mostrou-se mais preciso. 
+ Na Zona 3 (Interior), a penetração do sinal real foi superior à atenuação estimada de 30 dB, beneficiando do efeito de multipath o que na maioria das vezes 
+ é uma desvantagem, neste caso foi melhorou o sinal. A maior diferença observou-se na qualidade do sinal: enquanto a teoria (SNR) previu 40-50 dB, as medições reais (SINR), afetadas por interferências de outras células, registaram apenas 5-35 dB.
+ Em suma, apesar das variáveis externas, os modelos usados são ótimas ferramentas, robustas e eficazes para a estimativa da qualidade do sinal.
 
 
 \subsubsection{SNR necessário}
 
 Como referido no capítulo anteriror, atrvés do software em Matlab, foi possível concluir quais os valores de SNR que devem ser garantidos para as modulações QPSK, 64-QAM e 256-QAM, 
-de forma a ober um desempenho de BER  de $10^{-4}$, para canais AWGN e Rayleigh com e sem diversidade na receção. 
+de forma a ober um desempenho de BER  de $10^{-4}$, para canais AWGN e Rayleigh com e sem diversidade na receção. Nesta 1ªa Fase do trabalho foram simulados apenas canais implementados com OFDM,
+devido ao OFDM e o SC-FDE terem a mesma complexidade e estrutura de blocos ser quase idêntica como viu-se na Figura \ref{fig:BlocosSCFDE}, se não houver distorção não-linear, 
+a taxa de erro teórica num canal AWGN é a mesma para ambos para um canal de Rayleigh com equalização perfeita o que é dito no enunciado, devido a isto o desempenho iria ser muito similar. 
 
 Os gráficos seguintes irão representar os valores de SNR necessários para as especificações dadas, a linha azul representa o valor teórico para o canal AWGN, a linha azul com asteriscos
 é o valor teórico para o canal de Rayleigh e a linha verde é o resultado da simulação realizada.
 
-
-\begin{table}[h]
+\begin{figure}[H]
     \centering
+    
+    % --- Linha Superior: Canal AWGN ---
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        % Caminho completo explicitado
+        \includegraphics[width=\linewidth]{Images/sAmplificador/QPSK_L_1_AWGN_OFDM.png}
+        \caption{AWGN (L=1)}
+        \label{fig:qpsk-awgn-l1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        % Caminho completo explicitado
+        \includegraphics[width=\linewidth]{Images/sAmplificador/QPSK_L_4_AWGN_OFDM.png}
+        \caption{AWGN (L=4)}
+        \label{fig:qpsk-awgn-l4}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Espaço vertical entre as linhas
+    
+    % --- Linha Inferior: Canal Rayleigh ---
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        % Caminho completo explicitado
+        \includegraphics[width=\linewidth]{Images/sAmplificador/QPSK_L_1_RAYL_OFDM.png}
+        \caption{Rayleigh (L=1)}
+        \label{fig:qpsk-rayl-l1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        % Caminho completo explicitado
+        \includegraphics[width=\linewidth]{Images/sAmplificador/QPSK_L_4_RAYL_OFDM.png}
+        \caption{Rayleigh (L=4)}
+        \label{fig:qpsk-rayl-l4}
+    \end{subfigure}
+    
+    \caption{Análise QPSK: Comparação lado a lado de $L=1$ e $L=4$ para os canais AWGN (topo) e Rayleigh (fundo).}
+    \label{fig:qpsk-diversity-analysis}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    
+    % --- Linha Superior: Canal AWGN ---
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/sAmplificador/64QAM_L_1_AWGN_OFDM.png}
+        \caption{AWGN (L=1)}
+        \label{fig:64qam-awgn-l1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/sAmplificador/64QAM_L_4_AWGN_OFDM.png}
+        \caption{AWGN (L=4)}
+        \label{fig:64qam-awgn-l4}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    % --- Linha Inferior: Canal Rayleigh ---
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/sAmplificador/64QAM_L_1_RAYL_OFDM.png}
+        \caption{Rayleigh (L=1)}
+        \label{fig:64qam-rayl-l1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/sAmplificador/64QAM_L_4_RAYL_OFDM.png}
+        \caption{Rayleigh (L=4)}
+        \label{fig:64qam-rayl-l4}
+    \end{subfigure}
+    
+    \caption{Análise 64-QAM: Comparação lado a lado de $L=1$ e $L=4$ para os canais AWGN (topo) e Rayleigh (fundo).}
+    \label{fig:64qam-diversity-analysis}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    
+    % --- Linha Superior: Canal AWGN ---
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/sAmplificador/256QAM_L_1_AWGN_OFDM.png}
+        \caption{AWGN (L=1)}
+        \label{fig:256qam-awgn-l1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/sAmplificador/256QAM_L_4_AWGN_OFDM.png}
+        \caption{AWGN (L=4)}
+        \label{fig:256qam-awgn-l4}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    % --- Linha Inferior: Canal Rayleigh ---
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/sAmplificador/256QAM_L_1_RAYL_OFDM.png}
+        \caption{Rayleigh (L=1)}
+        \label{fig:256qam-rayl-l1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/sAmplificador/256QAM_L_4_RAYL_OFDM.png}
+        \caption{Rayleigh (L=4)}
+        \label{fig:256qam-rayl-l4}
+    \end{subfigure}
+    
+    \caption{Análise 256-QAM: Comparação lado a lado de $L=1$ e $L=4$ para os canais AWGN (topo) e Rayleigh (fundo).}
+    \label{fig:256qam-diversity-analysis}
+\end{figure}
+
+
+\begin{table}[H]
+    \centering
+    \small
     \caption{Relação SNR necessária para diferentes esquemas de modulação e diversidade em canais AWGN e Rayleigh garantido um BER de $10^{-4}$.}
     \label{tab:performance_modulacao} 
     
@@ -45,29 +266,37 @@ Os gráficos seguintes irão representar os valores de SNR necessários para as 
 \toprule
 \textbf{Canal} & \textbf{Modulação} & \textbf{SNR} & \textbf{Diversidade} \\
 \midrule
-AWGN & QPSK   &  dB  & 1 \\
-AWGN & QPSK   &  dB  & 4 \\
-RAYL & QPSK   &  dB & 1 \\
-RAYL & QPSK   &  dB  & 4 \\
+AWGN & QPSK  & 8 dB  & 1 \\
+AWGN & QPSK   & 3 dB  & 4 \\
+RAYL & QPSK  & 34 dB & 1 \\
+RAYL & QPSK  & 7 dB  & 4 \\
 \midrule
-AWGN & 64-QAM &  dB & 1 \\
-AWGN & 64-QAM &  dB & 4 \\
-RAYL & 64-QAM &  dB & 1 \\
-RAYL & 64-QAM &  dB & 4 \\
+AWGN & 64-QAM & 17 dB & 1 \\
+AWGN & 64-QAM & 10 dB & 4 \\
+RAYL & 64-QAM & 40 dB & 1 \\
+RAYL & 64-QAM & 14 dB & 4 \\
 \midrule
-% Valores estimados para 256-QAM baseados em tendências teóricas
-AWGN & 256-QAM &  dB & 1 \\
-AWGN & 256-QAM &  dB & 4 \\
-RAYL & 256-QAM &  dB & 1 \\
-RAYL & 256-QAM &  dB & 4 \\
+AWGN & 256-QAM & 22 dB & 1 \\
+AWGN & 256-QAM & 15 dB & 4 \\
+RAYL & 256-QAM & 44 dB & 1 \\
+RAYL & 256-QAM & 19 dB & 4 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+A tabela \ref{tab:performance_modulacao} resume os valores de SNR, necessários para garantir um BER de $10^{-4}$.
+A partir da tabela podemos tirar várias conclusões começando pelo impacto da ordem de modulação, modulações de ordem superior como o 256-QAM 
+que possui uma constelação mais densa, símbolos estão mais próximos sendo mais suscetível ao ruído, exigidino uma potência de sinal maior 
+para manter a mesma taxa de erro. 
 
-\textcolor{red}{Justificar a tabela com os valores preenchdios na tabela}
+Ao analisar o impacto do canal, a degradação introduzida pelo canal de Rayleigh com fadding é notória quando comparado com o canal ideal AWGN. Isto
+deve-se ao canal de Rayleigh simular um ambiente NLOS com multipath, onde ocorre desvanecimentos de sinal, levando a perdas de sinais drásticas, levando
+a erros na receção, para compensar isto é necessário injetar uma potência de transmissão mais alta.
 
-\subsubsection{Diversidade e diferença de canais}
+Para terminar a análise iremos ao último parâmetro o uso de diversidade de antenas, este método que se mostrou muito eficaz 
+especialmente no canal de Rayleigh. Tal como aprendemos na teórica a diversidade espacial é uma solução para o desvanecimento. A probabilidade de as 
+4 antenas estarem a sofrer fadding ao mesmo tmepo é muito baixa, conseguindo assim compensar as perdas num canal com perdas como o de Rayleigh.
+
 
 \subsubsection{Densidades de energia por m2, a potência recebida e o noise floor requerido
 no receptor}
@@ -78,7 +307,112 @@ no receptor}
 Nesta etapa, com o objetivo de avaliar o impacto da não-linearidade do 
 amplificador na qualidade de transmissão, procedeu-se à análise das curvas de BER em função do SNR 
 para a modulação QPSK, 64-QAM e 256-QAM em ambos os canais com e sem diversidade. O desempenho foi avaliado considerando diferentes fatores de suavidade do amplificador, 
-nomeadamente $p=1$, $p=2$, $p=10$ e $p=50$, estes valores foram escolhidos para ser possível uma maior comparação entre o pior caso $p=1$ onde iremos ver muita distroção e $p=50$
-numa zona quase linear. Para estes ensaios, a tensão de saturação ($S_{sat}$) foi fixada em 1 de modo 
-a forçar o amplificador a operar perto da saturação, tornando mais notórias as diferenças entres o valores de $p$.
+nomeadamente $p=1$, $p=2$ e $p=10$, estes valores foram escolhidos para ser possível uma maior comparação entre o pior caso $p=1$ onde iremos ver muita distroção e $p=10$
+numa zona mais perto do funcionamento linear. Para estes ensaios, a tensão de saturação ($S_{sat} = 5$), tornando mais notórias as diferenças entres o valores de $p$ e tendo 
+margem para comparação com os valores obtidos na fase anterior.
+
+Para o relatório não ficar maçante, escolhemos apenas alguns gráficos para retratar os alguns casos para termos de comparação 
+e ser possível analisar e tirarmos conclusões acerca dos resultados obtidos. 
+
+\begin{figure}[H]
+    \centering
+    % --- Imagem 1: OFDM ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/QPSK_AWGN_OFDM_SSAT5_L_1_P_1.png}
+        \caption{OFDM (QPSK, $p=1$)}
+        \label{fig:qpsk_ofdm}
+    \end{subfigure}
+    \hfill
+    % --- Imagem 2: SC-FDE ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/QPSK_AWGN_SCFDE_SSAT5_L_1_P_1.png}
+        \caption{SC-FDE (QPSK, $p=1$)}
+        \label{fig:qpsk_scfde}
+    \end{subfigure}
+    
+    \caption{Comparação de desempenho para QPSK com amplificação não-linear severa ($p=1$).}
+    \label{fig:res_qpsk}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering
+    % --- LINHA 1: p = 1 (Muito não-linear) ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/64QAM_RAYL_OFDM_SSAT5_L_4_P_1.png}
+        \caption{OFDM ($p=1$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/64QAM_RAYL_SCFDE_SSAT5_L_4_P_1.png}
+        \caption{SC-FDE ($p=1$)}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Espaço entre as linhas
+    
+    % --- LINHA 2: p = 2 (Pouco não-linear) ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/64QAM_RAYL_OFDM_SSAT5_L_4_P_1.png}
+        \caption{OFDM ($p=2$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/64QAM_RAYL_SCFDE_SSAT5_L_4_P_1.png}
+        \caption{SC-FDE ($p=2$)}
+    \end{subfigure}
+    
+    \caption{Impacto da linearidade do amplificador ($p$) na modulação 64-QAM. Em cima temos forte distorção, em baixo distorção moderada. Nota-se a robustez do SC-FDE.}
+    \label{fig:res_64qam}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    % --- LINHA 1: p = 2 (Crítico para 256QAM) ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/256QAM_RAYL_OFDM_SSAT5_L_4_P_2.png}
+        \caption{OFDM ($p=2$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/256QAM_RAYL_SCFDE_SSAT5_L_4_P_2.png}
+        \caption{SC-FDE ($p=2$)}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Espaço entre as linhas
+    
+    % --- LINHA 2: p = 10 (Quase linear) ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/256QAM_RAYL_OFDM_SSAT5_L_4_P_10.png}
+        \caption{OFDM ($p=10$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/cAmplificador/256QAM_RAYL_SCFDE_SSAT5_L_4_P_2.png} % Confirma se tens este ficheiro ou se é P_3
+        \caption{SC-FDE ($p=10$)}
+    \end{subfigure}
+    
+    \caption{Desempenho em 256-QAM. Mesmo com $p=10$ (em baixo), o OFDM ainda apresenta degradação, enquanto o SC-FDE recupera quase totalmente.}
+    \label{fig:res_256qam}
+\end{figure}
+
+Ao analisar as curvas de BER obtidas, é possível verificar que o sistema OFDM tem de desempenho muito inferior ao 
+SC-FDE quando o amplificador opera perto da saturação ($p=1$ e $p=2$). 
+Isto deve-se ao elevado (Peak-to-average power ratio) do sinal OFDM, que é distorcido pelas não-linearidades, estragando a ortogonalidade das subportadoras levando a interferências. 
+Para o caso SC-FDE, apresenta menores flutuações de envolvente para modulações mais altas, 
+mostra-se ser mais robusto nestas condições.
+
+
+
 
