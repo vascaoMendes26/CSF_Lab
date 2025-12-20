@@ -5,9 +5,9 @@
 \subsubsection{Resultados obtidos através de modelos matemáticos}
 
 Como foi explicado no capítulo anterior, foram retiradas as distâncias dos pontos para usar nos cálculos teóricos 
-de modo a ser possível comparar os valores teóriocos para path loss, potência recebida para três casos possíveis, antena a emitir a 250mW, 2W e a 20W, por
+de modo a ser possível comparar os valores teóricos para path loss, potência recebida para três casos possíveis, antena a emitir a 250mW, 2W e a 20W, por
 fim foram calculados os respetivos valores de SNR para dois valores típicos de Noise Floor, 95dBm e 105dBm.
-Como o ficheiro é bastante extenso, este irá encontrar-se em anexo com os respetivos resultados, na tabela  nesta subsubsecção iremos mostrar como foram obtidos os resultados
+Como o ficheiro é bastante extenso, este irá encontrar-se em anexo com os respetivos resultados, na tabela  desta subsecção iremos mostrar como foram obtidos os resultados
 e apenas os que serviram de comparação para a próxima subsubsecção. A ordem dos pontos na tabela está de acordo com os nomes da figura \ref{fig:Pontos},
 sendo que a ordem é Avenida do 7, entre o Ed. X e Ed.7 e Piso 1 do Ed.X. 
 
@@ -62,11 +62,11 @@ com base na distância e no quanto o sinal era obstruído antes de chegar ao uti
 \subsubsection{Teste e medições práticas}
 
 Com o equipamento fornecido pela Vodafone, foi possível fazer as medições nos mesmos locais dos nossos pontos que foram calculados teoricamente. Um exemplo de uma medição feita
-no ponto\_3X (Tabela \ref{tab:performance_modulacao}), pode ser vista na figura \ref{fig:TesteVoda}.
+no ponto3\_X (Tabela \ref{tab:performance_modulacao}), pode ser vista na figura \ref{fig:TesteVoda}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=3cm]{Images/VodafoneEquipamento.png}
+    \includegraphics[width=2cm]{Images/VodafoneEquipamento.png}
     \caption{Exemplo de um teste realizado no ponto3\_X}
     \label{fig:TesteVoda}
 \end{figure}
@@ -111,20 +111,20 @@ Na Tabela \ref{tab:Campo}, está um resumo dos dados obtidos na prática, nos me
 \end{table}
 
 
-\subsubsection{Comparação e analíse dos resultados teóricos com os resultados práticos}
+\subsubsection{Comparação e Análise dos resultados teóricos com os resultados práticos}
 
 A comparação entre os valores teóricos e práticos revelaram discrepâncias esperadas devido à simplificação dos modelos face
  à complexidade real (ignorando perdas de cabos ou ganhos de antena). 
  Na Zona 1 LOS, os valores teóricos foram otimistas, e como era esperado o modelo ABG a 3.4 GHz mostrou-se mais preciso. 
  Na Zona 3 (Interior), a penetração do sinal real foi superior à atenuação estimada de 30 dB, beneficiando do efeito de multipath o que na maioria das vezes 
- é uma desvantagem, neste caso foi melhorou o sinal. A maior diferença observou-se na qualidade do sinal: enquanto a teoria (SNR) previu 40-50 dB, as medições reais (SINR), afetadas por interferências de outras células, registaram apenas 5-35 dB.
+ é uma desvantagem, neste caso melhorou o sinal. A maior diferença observou-se na qualidade do sinal: enquanto a teoria (SNR) previu 40-50 dB, as medições reais (SINR), afetadas por interferências de outras células, registaram apenas 5-35 dB.
  Em suma, apesar das variáveis externas, os modelos usados são ótimas ferramentas, robustas e eficazes para a estimativa da qualidade do sinal.
 
 
 \subsubsection{SNR necessário}
 
-Como referido no capítulo anteriror, atrvés do software em Matlab, foi possível concluir quais os valores de SNR que devem ser garantidos para as modulações QPSK, 64-QAM e 256-QAM, 
-de forma a ober um desempenho de BER  de $10^{-4}$, para canais AWGN e Rayleigh com e sem diversidade na receção. Nesta 1ªa Fase do trabalho foram simulados apenas canais implementados com OFDM,
+Como referido no capítulo anterior, através do software em Matlab, foi possível concluir quais os valores de SNR que devem ser garantidos para as modulações QPSK, 64-QAM e 256-QAM, 
+de forma a obter um desempenho de BER  de $10^{-4}$, para canais AWGN e Rayleigh com e sem diversidade na receção. Nesta 1ª Fase do trabalho foram simulados apenas canais implementados com OFDM,
 devido ao OFDM e o SC-FDE terem a mesma complexidade e estrutura de blocos ser quase idêntica como viu-se na Figura \ref{fig:BlocosSCFDE}, se não houver distorção não-linear, 
 a taxa de erro teórica num canal AWGN é a mesma para ambos para um canal de Rayleigh com equalização perfeita o que é dito no enunciado, devido a isto o desempenho iria ser muito similar. 
 
@@ -289,17 +289,122 @@ A partir da tabela podemos tirar várias conclusões começando pelo impacto da 
 que possui uma constelação mais densa, símbolos estão mais próximos sendo mais suscetível ao ruído, exigidino uma potência de sinal maior 
 para manter a mesma taxa de erro. 
 
-Ao analisar o impacto do canal, a degradação introduzida pelo canal de Rayleigh com fadding é notória quando comparado com o canal ideal AWGN. Isto
+Ao analisar o impacto do canal, a degradação introduzida pelo canal de Rayleigh com fading é notória quando comparado com o canal ideal AWGN. Isto
 deve-se ao canal de Rayleigh simular um ambiente NLOS com multipath, onde ocorre desvanecimentos de sinal, levando a perdas de sinais drásticas, levando
 a erros na receção, para compensar isto é necessário injetar uma potência de transmissão mais alta.
 
 Para terminar a análise iremos ao último parâmetro o uso de diversidade de antenas, este método que se mostrou muito eficaz 
 especialmente no canal de Rayleigh. Tal como aprendemos na teórica a diversidade espacial é uma solução para o desvanecimento. A probabilidade de as 
-4 antenas estarem a sofrer fadding ao mesmo tmepo é muito baixa, conseguindo assim compensar as perdas num canal com perdas como o de Rayleigh.
+4 antenas estarem a sofrer fading ao mesmo tempo é muito baixa, conseguindo assim compensar as perdas num canal com perdas como o de Rayleigh.
 
 
-\subsubsection{Densidades de energia por m2, a potência recebida e o noise floor requerido
+\subsubsection{Acréscimos de Potência necessários para que se verifique o desempenho de $10^{-4}$ nos pontos selecionados}
+
+Nesta subsubsecção apresentamos os acréscimos de potência para alguns pontos da Tabela \ref{tab:Calculos} e comparamos com 
+os valores da Tabela \ref{tab:performance_modulacao}. Todos os pontos da Tabela \ref{tab:Calculos} que tenham um valor de SNR, mais baixo 
+do que algum dos valores da Tabela \ref{tab:performance_modulacao} devido a isso decidimos nos focar nalguns pontos em que levavam a um grande acréscimo 
+de potência para atingir o objetivo.
+
+\begin{table}[h]
+\centering
+\caption{Acréscimo de potência necessária para cada ponto para garantir um BER de $10^{-4}$ para diferentes modulações}
+\label{tab:Potencia}     
+% O resizebox ajusta a tabela à largura do texto (\textwidth)
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & & & 7,623 & 0,767 & 16,623 & 1,999 & 26,976 & 11,999 & 17,623 & 2,999 & 26,623 & 11,999 & 36,623 & 21,999 \\ \hline
+\multirow{4}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Modul\\ ação\end{tabular}}} & \multirow{4}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Divers\\ idade\end{tabular}}} & \multirow{4}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}SNR\\ Alvo\\ (Tabel\\ a 3)\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}SNR Disponível\\ (250mW)/Acréscimo de potência\\ alguns valores\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}SNR Disponível (2W)/Acréscimo de potência\\ alguns valores\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}SNR Disponível (20W)/Acréscimo\\ de potência alguns valores\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}SNR Disponível\\ (250mW)/Acréscimo de potência\\ alguns valores\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}SNR Disponível (2W)/Acréscimo de\\ potência alguns valores\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}SNR Disponível (20W)/Acréscimo\\ de potência alguns valores\end{tabular}}} \\ \hline
+ & 1 & 34 & 26,377 & 33,233 & 17,377 & 32,001 & 7,377 & 22,001 & 16,377 & 31,001 & 7,377 & 22,001 & 0,000 & 12,001 \\ \cline{2-15} 
+ & 4 & 7 & 0,000 & 6,233 & 0,000 & 5,001 & 0,000 & 0,000 & 0,000 & 4,001 & 0,000 & 0,000 & 0,000 & 0,000 \\ \cline{2-15} 
+ & & & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 \\ \hline
+\multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}64-\\ QAM\end{tabular}}} & 1 & 40 & 32,377 & 39,233 & 23,377 & 38,001 & 13,377 & 28,001 & 22,377 & 37,001 & 13,377 & 28,001 & 3,377 & 18,001 \\ \cline{2-15} 
+ & 4 & 14 & 6,377 & 13,233 & 0,000 & 12,001 & 0,000 & 2,001 & 0,000 & 11,001 & 0,000 & 2,001 & 0,000 & 0,000 \\ \cline{2-15} 
+ & & & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 & 0,000 \\ \hline
+\multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}256-\\ QAM\end{tabular}}} & 1 & 44 & 36,377 & 43,233 & 27,377 & 42,001 & 17,377 & 32,001 & 26,377 & 41,001 & 17,377 & 32,001 & 7,377 & 22,001 \\ \cline{2-15} 
+ & 4 & 19 & 11,377 & 18,233 & 2,377 & 17,001 & 0,000 & 7,001 & 1,377 & 16,001 & 0,000 & 7,001 & 0,000 & 0,000 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\subsubsection{Densidades de energia por $m^{2}$, a potência recebida e o noise floor requerido
 no receptor}
+
+Para a análise da densidade de energia, considera-se a relação entre a potência recebida ($P_{rx}$) e a densidade de potência ($S$) incidente numa antena. Assumindo uma antena recetora isotrópica ($G_r = 1$), a potência recebida é dada pelo produto da densidade de potência pela abertura efetiva da antena ($A_e$):
+
+\begin{equation}
+    P_{rx} = S \cdot A_e \implies S = \frac{P_{rx}}{A_e} \quad [W/m^2]
+    \label{eq:densidade_potencia}
+\end{equation}
+
+A abertura efetiva ($A_e$) para uma antena isotrópica depende do comprimento de onda ($\lambda$) da frequência portadora:
+
+\begin{equation}
+    A_e = \frac{\lambda^2}{4\pi} \quad \text{onde} \quad \lambda = \frac{c}{f}
+    \label{eq:abertura_efetiva}
+\end{equation}
+
+
+\begin{table}[h!]
+\centering
+\caption{Densidade de Potência Recebida ($W/m^2$) para as frequências 800 MHz e 3.4 GHz.}
+\label{tab:densidade_potencia}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}l|cc|cc|cc@{}}
+\toprule
+\textbf{Zona} & \multicolumn{2}{c|}{\textbf{250 mW}} & \multicolumn{2}{c|}{\textbf{2 W}} & \multicolumn{2}{c}{\textbf{20 W}} \\ \cmidrule(l){2-7} 
+ & \textbf{800 MHz} & \textbf{3.4 GHz} & \textbf{800 MHz} & \textbf{3.4 GHz} & \textbf{800 MHz} & \textbf{3.4 GHz} \\ \midrule
+Zona 1 (LOS) & $9.38 \times 10^{-7}$ & $5.42 \times 10^{-7}$ & $7.45 \times 10^{-6}$ & $4.31 \times 10^{-6}$ & $7.45 \times 10^{-5}$ & $4.31 \times 10^{-5}$ \\
+Zona 1 (LOS) & $5.95 \times 10^{-7}$ & $3.44 \times 10^{-7}$ & $4.72 \times 10^{-6}$ & $2.73 \times 10^{-6}$ & $4.72 \times 10^{-5}$ & $2.73 \times 10^{-5}$ \\
+Zona 1 (LOS) & $3.38 \times 10^{-7}$ & $1.95 \times 10^{-7}$ & $2.68 \times 10^{-6}$ & $1.55 \times 10^{-6}$ & $2.68 \times 10^{-5}$ & $1.55 \times 10^{-5}$ \\ \midrule
+Zona 2 (NLOS) & $5.47 \times 10^{-8}$ & $5.98 \times 10^{-7}$ & $4.34 \times 10^{-7}$ & $4.75 \times 10^{-6}$ & $4.34 \times 10^{-6}$ & $4.75 \times 10^{-5}$ \\
+Zona 2 (NLOS) & $5.15 \times 10^{-8}$ & $3.16 \times 10^{-7}$ & $4.09 \times 10^{-7}$ & $2.51 \times 10^{-6}$ & $4.09 \times 10^{-6}$ & $2.51 \times 10^{-5}$ \\
+Zona 2 (NLOS) & $4.55 \times 10^{-8}$ & $1.43 \times 10^{-7}$ & $3.61 \times 10^{-7}$ & $1.14 \times 10^{-6}$ & $3.61 \times 10^{-6}$ & $1.14 \times 10^{-5}$ \\ \midrule
+Zona 3 (Ind) & $1.77 \times 10^{-10}$ & $6.09 \times 10^{-10}$ & $1.41 \times 10^{-9}$ & $4.84 \times 10^{-9}$ & $1.41 \times 10^{-8}$ & $4.84 \times 10^{-8}$ \\
+Zona 3 (Ind) & $1.94 \times 10^{-10}$ & $2.74 \times 10^{-10}$ & $1.54 \times 10^{-9}$ & $2.18 \times 10^{-9}$ & $1.54 \times 10^{-8}$ & $2.18 \times 10^{-8}$ \\
+Zona 3 (Ind) & $1.63 \times 10^{-10}$ & $1.02 \times 10^{-10}$ & $1.30 \times 10^{-9}$ & $8.09 \times 10^{-10}$ & $1.30 \times 10^{-8}$ & $8.09 \times 10^{-9}$ \\ \bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Relativamente à qualidade de serviço, o \textit{Noise Floor} máximo permitido no recetor é determinado pela margem entre a potência recebida e a relação sinal-ruído ($SNR$) mínima necessária para garantir os requisitos de EVM (3.5\% para 256-QAM e 8\% para 64-QAM):
+
+\begin{equation}
+    N_{floor_{[dBm]}} = P_{rx_{[dBm]}} - SNR_{alvo_{[dB]}}
+    \label{eq:noise_floor}
+\end{equation}
+
+
+
+\begin{table}[h!]
+\centering
+\caption{Noise Floor Máximo Permitido (dBm) para garantir QoS (Tx Power = 2 W).}
+\label{tab:noise_floor_req}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}l|cc|cc@{}}
+\toprule
+ & \multicolumn{2}{c|}{\textbf{Alvo: 64-QAM (SNR 20dB)}} & \multicolumn{2}{c}{\textbf{Alvo: 256-QAM (SNR 30.4dB)}} \\ \cmidrule(l){2-5} 
+\textbf{Zona} & \textbf{800 MHz} & \textbf{3.4 GHz} & \textbf{800 MHz} & \textbf{3.4 GHz} \\ \midrule
+Zona 1 (LOS) & -60.79 & -75.73 & -71.19 & -86.13 \\
+Zona 1 (LOS) & -62.76 & -77.71 & -73.16 & -88.11 \\
+Zona 1 (LOS) & -65.22 & -80.17 & -75.62 & -90.57 \\ \midrule
+Zona 2 (NLOS) & -67.12 & -75.80 & -77.52 & -86.20 \\
+Zona 2 (NLOS) & -67.29 & -78.07 & -77.69 & -88.47 \\
+Zona 2 (NLOS) & -67.92 & -81.52 & -78.32 & -91.92 \\ \midrule
+Zona 3 (Ind) & -105.22 & -108.69 & -115.63 & -119.09 \\
+Zona 3 (Ind) & -97.63 & -112.99 & -108.03 & -123.39 \\
+... & ... & ... & ... & ... \\ \bottomrule
+\end{tabular}%
+}
+\vspace{0.2cm}
+\small{\\Nota: Valores calculados para uma potência de emissão de 2 W. Valores inferiores ao \textit{Noise Floor} real do equipamento indicam impossibilidade de comunicação.}
+\end{table}
+
+A análise da Tabela \ref{tab:densidade_potencia} mostra que a densidade de potência incidente é superior nos 800 MHz
+comparativamente aos 3.4 GHz, como esperado, devido  à maior path loss sofrida pelas frequências mais elevadas. 
+Relativamente à qualidade de serviço (Tabela \ref{tab:noise_floor_req}), 
+confirma-se que a utilização de modulações de ordem superior, como o 256-QAM, exigem um noise floor significativamente mais baixo, 
+tornando a comunicação inviável nas zonas onde este valor teórico é inferior à sensibilidade real do equipamento. 
 
 
 \subsection{Fase 2}
@@ -307,11 +412,11 @@ no receptor}
 Nesta etapa, com o objetivo de avaliar o impacto da não-linearidade do 
 amplificador na qualidade de transmissão, procedeu-se à análise das curvas de BER em função do SNR 
 para a modulação QPSK, 64-QAM e 256-QAM em ambos os canais com e sem diversidade. O desempenho foi avaliado considerando diferentes fatores de suavidade do amplificador, 
-nomeadamente $p=1$, $p=2$ e $p=10$, estes valores foram escolhidos para ser possível uma maior comparação entre o pior caso $p=1$ onde iremos ver muita distroção e $p=10$
+nomeadamente $p=1$, $p=2$ e $p=10$, estes valores foram escolhidos para ser possível uma maior comparação entre o pior caso $p=1$ onde iremos ver muita distorção e $p=10$
 numa zona mais perto do funcionamento linear. Para estes ensaios, a tensão de saturação ($S_{sat} = 5$), tornando mais notórias as diferenças entres o valores de $p$ e tendo 
 margem para comparação com os valores obtidos na fase anterior.
 
-Para o relatório não ficar maçante, escolhemos apenas alguns gráficos para retratar os alguns casos para termos de comparação 
+Para o relatório ficar conciso, escolhemos apenas alguns gráficos para retratar alguns casos para termos de comparação 
 e ser possível analisar e tirarmos conclusões acerca dos resultados obtidos. 
 
 \begin{figure}[H]
@@ -359,13 +464,13 @@ e ser possível analisar e tirarmos conclusões acerca dos resultados obtidos.
     \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Images/cAmplificador/64QAM_RAYL_OFDM_SSAT5_L_4_P_1.png}
-        \caption{OFDM ($p=2$)}
+        \caption{OFDM ($p=1$)}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Images/cAmplificador/64QAM_RAYL_SCFDE_SSAT5_L_4_P_1.png}
-        \caption{SC-FDE ($p=2$)}
+        \caption{SC-FDE ($p=1$)}
     \end{subfigure}
     
     \caption{Impacto da linearidade do amplificador ($p$) na modulação 64-QAM. Em cima temos forte distorção, em baixo distorção moderada. Nota-se a robustez do SC-FDE.}
@@ -400,7 +505,7 @@ e ser possível analisar e tirarmos conclusões acerca dos resultados obtidos.
     \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Images/cAmplificador/256QAM_RAYL_SCFDE_SSAT5_L_4_P_2.png} % Confirma se tens este ficheiro ou se é P_3
-        \caption{SC-FDE ($p=10$)}
+        \caption{SC-FDE ($p=2$)}
     \end{subfigure}
     
     \caption{Desempenho em 256-QAM. Mesmo com $p=10$ (em baixo), o OFDM ainda apresenta degradação, enquanto o SC-FDE recupera quase totalmente.}
@@ -409,10 +514,59 @@ e ser possível analisar e tirarmos conclusões acerca dos resultados obtidos.
 
 Ao analisar as curvas de BER obtidas, é possível verificar que o sistema OFDM tem de desempenho muito inferior ao 
 SC-FDE quando o amplificador opera perto da saturação ($p=1$ e $p=2$). 
-Isto deve-se ao elevado (Peak-to-average power ratio) do sinal OFDM, que é distorcido pelas não-linearidades, estragando a ortogonalidade das subportadoras levando a interferências. 
+Isto deve-se ao elevado (Peak-to-average power ratio) do sinal OFDM, que é distorcido pelas não-linearidades, comprometendo a ortogonalidade das subportadoras levando a interferências. 
 Para o caso SC-FDE, apresenta menores flutuações de envolvente para modulações mais altas, 
-mostra-se ser mais robusto nestas condições.
+mostra-se ser mais robusto nestas condições. Além disto a modulação QPSK mostra-se ser muito mais robusta, conseguindo trabalhar mesmo numa zona linear.
 
+\subsubsection{Sobredimensionamento do amplificador}
 
+Para conseguirmos entender para que valores o amplificador, implementámos um Input Backoff no código, este que se encontra em anexo, onde 
+o nosso objetivo foi entender para termos o mesmo desempenho de um valor de $p=10$, usando um amplificador de $p=1$, onde é possível ver as diferenças acima, 
+quanto tempo de recuar na potência de entrada, para não distorcer o sinal. Partindo deste ponto inicial, retirámos algumas imagens do script para que seja possível
+comparar com os valores obtidos acima. 
+
+\begin{figure}[H]
+    \centering
+    % --- LINHA 1: Comparação 64-QAM (OFDM vs SC-FDE) com IBO=3dB ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/InBackoff/64QAM_RAYL_OFDM_SSAT5_L_4_P_1_IBO3.png}
+        \caption{OFDM 64-QAM ($p=1$ e IBO=3dB)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/InBackoff/64QAM_RAYL_SCFDE_SSAT5_L_4_IBO3_P_1.png}
+        \caption{SC-FDE 64-QAM ($p=1$ e IBO=3dB)}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Espaço entre as linhas
+    
+    % --- LINHA 2: Comparação 256-QAM OFDM (IBO 3dB vs 6dB) ---
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/InBackoff/256QAM_RAYL_OFDM_L_4_IBO_DB3.png}
+        \caption{OFDM 256-QAM ($p=1$ e IBO=3dB)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/InBackoff/256QAM_RAYL_OFDM_L_4_IBO_DB6.png}
+        \caption{OFDM 256-QAM ($p=1$ e IBO=6dB)}
+    \end{subfigure}
+    
+    \caption{Análise do impacto do Input Backoff (IBO) com amplificação severa ($p=1$). Em cima: Comparação entre OFDM e SC-FDE para 64-QAM. Em baixo: A recuperação do sinal OFDM 256-QAM ao aumentar o IBO de 3dB para 6dB.}
+    \label{fig:analise_backoff}
+\end{figure}
+
+Para eliminar a distorção introduzida por um amplificador fortemente não-linear ($p=1$) e aproximar o seu desempenho 
+ao de um linear ($p=10$), implementou-se um Input Backoff (IBO).
+Ao analisarmos os resultados da Figura \ref{fig:analise_backoff} vemos a grande vantagem do SC-FDE, este é mais robusto para modulações mais altas,
+com um IBO reduzido de 3 dB, o SC-FDE (64-QAM) mantém um desempenho aceitável, descendo a curva de BER, tal como era previsto e fora justificado ao longo do relatório. 
+Já o OFDM exibe o devido ao seu alto PAPR, que leva o sinal a saturar constantemente o amplificador.
+Para viabilizar modulações de ordem superior como o 256-QAM em OFDM, um IBO de 3 dB revelou-se insuficiente. 
+Apenas ao aumentar o sobredimensionamento para 6 dB foi possível forçar o amplificador a operar numa região quase-linear, eliminando o patamar de erro e permitindo atingir o BER alvo de $10^{-4}$.
+
+Para concluir análise, confirma-se que o OFDM exige um sobredimensionamento superior ao SC-FDE, sacrificando a eficiência energética para garantir a integridade do sinal face a não-linearidades severas.
 
 

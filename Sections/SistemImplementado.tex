@@ -16,7 +16,7 @@ distintas(Avenida principal, entre Ed. X e Ed. 7 e dentro do piso 1 Ed. X), onde
 \end{figure}
 
 Após terem sido marcados os pontos no mapa, com a ferramenta de medir distância 
-do Google Earth, medímos a distância de cada ponto à antena colocando essas métricas num 
+do Google Earth, medimos a distância de cada ponto à antena colocando essas métricas num 
 ficheiro excel para ser usado nos cálculos das equações \ref{eq:LFSPL} e \ref{eq:pr}.
 
 Foram usados dois modelos para calcular o Path Loss: 
@@ -27,9 +27,9 @@ em condição de Line of Sight(LOS) ou obstruído (NLOS), obtendo assim uma maio
 
 Numa próxima etapa desta fase foi desenvolvido um simulador em Matlab para um sistema baseada em OFDM (Modulação por Divisão de Frequência Ortogonal),
 utilizando 512 subportadores e outro sistema baseado em SC-FDE (Portadora Única com Equalização no Domínio da Frequência). 
-Ambos os sistemas permitem analisar a propagação dos sianis codificados com esquemas de modulação QPSK, 64-QAM e 256-QAM e para canais AWGN (Ruído Gaussiano Branco Aditivo) e canais com fadding de Rayleigh, este que representa o pior caso para comunicação.
+Ambos os sistemas permitem analisar a propagação dos sinais codificados com esquemas de modulação QPSK, 64-QAM e 256-QAM e para canais AWGN (Ruído Gaussiano Branco Aditivo) e canais com fading de Rayleigh, este que representa o pior caso para comunicação.
 Além disto foi simulada a diversidade espacial na recepção, utilizando 4 antenas.
-Nas Figura \ref{fig:BlocosOFDM}  e \ref{fig:BlocosSCFDE} é apresentado os diagramas de blocos do simulador tanto para OFDM quanto para SC-FDE onde é possível ver as diferenças entre ambos.
+Nas Figuras \ref{fig:BlocosOFDM}  e \ref{fig:BlocosSCFDE} é apresentado os diagramas de blocos do simulador tanto para OFDM quanto para SC-FDE onde é possível ver as diferenças entre ambos.
 
 \begin{figure}[htp]
     \centering
@@ -49,26 +49,26 @@ Nas Figura \ref{fig:BlocosOFDM}  e \ref{fig:BlocosSCFDE} é apresentado os diagr
 
 \subsubsection{Arquitetura do Sistema}
 
-O sistema de transmissão implementado tem um estrutura de blocos dividida em Emissor, Canal e Recetor. Estes que são comuns em ambos os modos (OFDM e SC-FDE). O emissor gera os dados e a
+O sistema de transmissão implementado tem uma estrutura de blocos dividida em Emissor, Canal e Recetor. Estes que são comuns em ambos os modos (OFDM e SC-FDE). O emissor gera os dados e a
 modulação (mapeamento de bits para símbolos via QPSK, 64-QAM ou 256-QAM). Após isso é colocado um Prefixo Cíclico (CP), retirando a interferência Inter-Simbólica (ISI), devido ao canal ser dispersivo.
 
 \subsubsection{Canal de Comunicação}
 
 \begin{itemize}
-    \item Ruído: AWGN (Additive White Gaussian Noise), este que demonstra o melhor cenário possível, contendo apenas ruído térmico e adensidade espectral de potência é constante;
+    \item Ruído: AWGN (Additive White Gaussian Noise), este que demonstra o melhor cenário possível, contendo apenas ruído térmico e a densidade espectral de potência é constante;
     \item Desvanecimento: Modelo de Rayleigh, modela um ambiente de propagação mais realista, onde existe ausência de linha de vista (LOS) entre o emissor e recetor. 
 \end{itemize}
 
 
 \subsubsection{Diferenciação: OFDM vs SC-FDE}
 
-Como foi abordado na componente teórica da unidade curricular a principal destrinçaõ entre estas duas técnicas está no processamento do sinal 
+Como foi abordado na componente teórica da unidade curricular a principal distinção entre estas duas técnicas está no processamento do sinal 
 nos domínios do tempo e da frequência, isso é possível ser visto nas Figuras \ref{fig:BlocosOFDM} e \ref{fig:BlocosSCFDE}.
 
 \subsubsection{Análise de Desempenho}
 
 Para avaliarmos a qualidade da comunicação iremos nos basear na análise de erros, comparando os bits transmitidos com os recebidos 
-com isso podemos calcular o bit error rate (BER), tento uma meta de $10^{-4}$, analisando qual o valor de SNR necessário para obter este desempenho.
+com isso podemos calcular o bit error rate (BER), tendo uma meta de $10^{-4}$, analisando qual o valor de SNR necessário para obter este desempenho.
 
 \subsection{2ª Fase}
 

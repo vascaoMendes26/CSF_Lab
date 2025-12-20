@@ -1,0 +1,27 @@
+\newpage
+\section{Conclusões}
+
+Este trabalho permitiu-nos entender a relação entre os modelos teóricos (COST 231 e ABG) e as medições de campo, apesar das aproximações 
+em alguns pontos serem bastante precisa, este trabalho mostrou-nos a complexidade introduzida pelo multipath entre outros fatores que alteram os resultados. Com esta análise
+foi possível sedimentar o nosso conhecimento prático, algo que realçamos como um ponto muito positivo deste trabalho. 
+
+Numa segunda parte vimos a diferença entre as potências de sinais entre as diferentes
+modulações, reforçando uma vez mais o que aprendemos nas aulas teóricas. Além das modulações vimos como o canal se comporta com mudanças na diversidade espacial consegue combater
+o desvanecimento para qualquer tipo de canal, tanto ideal e o outro com fadding onde a diversidade se mostrou uma boa solução trazendo uma melhoria nos resultados obtidos.
+
+Por fim a fase 2, destacou-se a vantagem do SC-FDE sobre o OFDM, onde colocámos duras restrições nos amplificadores, simulando amplificadores baratos e de baixa qualidade,
+analisando com o canal se comporta, devido às distroções não-lineares, foi muito complicado de receber tornou-se muito complicado de obter um BER de $10^{-4}$ para modulações mais altas. Após 
+usarmos o Input Backoff, conclui-se que a implementação baseada em OFDM leva a um consumo energético muito maior para a mesma potência radiada. O SC-FDE, demonstra 
+e tal como estudado na teórica, uma opção energeticamente mais eficiente para o uplink, desperdiçando menos potência na amplificação.
+
+Após esta análise do trabalho, vemos que o objetivo foi concluído com sucesso, onde obtivemos resultados positivos para
+analise de cobertura e qualidade do sinal com comunicações sem fios, comparando com resultados teóricos e práticos, foi 
+visto as diferenças e realizadas simulações para sistemas com e sem diversidade na recepção na presença de modulações multi e mono-portadora com e sem uso de amplificadores. 
+
+
+\section{Anexos}
+
+\begin{itemize}
+    \item \textbf{CSF\_Lab.xlsx:} Ficheiro Excel mencionado no texto, com todos os cálculos e tabelas necessários para realizar o trabalho.
+    \item \textbf{VersaoFinalFaseJuntas.m:} Dentro da pasta CSF\_Lab\_Matlab encontra-se este ficheiro que foi usado para facilitar e conseguir analisar todos os objetivos do trabalho num só ficheiro Matlab.
+\end{itemize}

@@ -1,16 +1,16 @@
 \section{Introdução}
 
-Com a evolução das tecnologias de comunicação sem fios, garantir uma boa qualidade de sinal está a tornar-se um problema cada vez mais complexo. Especialmente no contexto de otimização de espetro e de energia. 
+Com a evolução das tecnologias de comunicação sem fios, garantir uma boa qualidade de sinal está a tornar-se um problema cada vez mais complexo. Especialmente no contexto de otimização de espectro e de energia. 
 
 Este trabalho foca-se na análise de cobertura de sinal e qualidade em sistemas de transmissão sem fios que usam modulações de multi e mono-portadora, OFDM e SC-FDE. Estas duas técnicas são muito utilizadas em normas de comunicação sem fio, tendo ambas diferentes vantagens e desvantagens. 
 
-Os objetivos principais a investigar são o efeito de relação sinal-ruído (SNR), atenuação do canal e do nível de ruído na cobertura e qualidade do sinal, comparação de performance entre OFDM e SC-FDE.
+Os objetivos principais a investigar são o efeito da relação sinal-ruído (SNR), atenuação do canal e do nível de ruído na cobertura e qualidade do sinal, comparação de performance entre OFDM e SC-FDE.
 
 Este trabalho encontra-se dividido em duas fases.
 
 Fase 1: Esta fase examina as densidades energéticas atingíveis, potência recebida e BER dependendo de potência, distância e condições do canal utilizando OFDM.
 
-Fase 2: Esta fase explora desempenho do OFDM e SC-FDE com diferentes modulações e condições de amplificação usando Solid State Power Amplifiear (SSPA).
+Fase 2: Esta fase explora desempenho do OFDM e SC-FDE com diferentes modulações e condições de amplificação usando Solid State Power Amplifier (SSPA).
 
 \subsection{Problema da SNR}
 
@@ -59,7 +59,7 @@ reduzindo as exigências de linearidade na amplificação, embora constelações
 
 A eficiência energética depende criticamente da amplificação. Ao contrário do 2G (envolvente constante), as modulações atuais (4G/5G) possuem envolventes variáveis, 
 impedindo o uso de amplificadores saturados sem introduzir distorção severa.
-Neste trabalho, modela-se o Solid State Power Amplifiear  (SSPA) através do Modelo de Rapp (Equação \ref{eq:Rapp}), analisando o impacto dos parâmetros de não-linearidade ($p=1$ e $p=2$) e parâmetros mais proximos da linearidade ($p=10$ e $p=50$)
+Neste trabalho, modela-se o Solid State Power Amplifier  (SSPA) através do Modelo de Rapp (Equação \ref{eq:Rapp}), analisando o impacto dos parâmetros de não-linearidade ($p=1$ e $p=2$) e parâmetros mais próximos da linearidade ($p=10$ e $p=50$)
 no consumo energético e na necessidade de backoff  para manter a integridade do sinal.
 
 \begin{equation}
@@ -71,8 +71,8 @@ no consumo energético e na necessidade de backoff  para manter a integridade do
 
 A evolução da potência radiada reflete as restrições de modulação explicadas acima. 
 No 2G, a envolvente constante (GMSK) permitia o uso de amplificadores saturados e potências de 400 W com alcance de 30 km. 
-Com o desenolvimento do 3G e 4G, as potências máximas caíram drasticamente passando para
-250mW a 40W, devido isso houve necessidade de  usar amplificadores lineares (SSPA) para suportar modulações de amplitude variável sem distorção.
+Com o desenvolvimento do 3G e 4G, as potências máximas caíram drasticamente passando para
+250mW a 40W, devido a isso houve necessidade de  usar amplificadores lineares (SSPA) para suportar modulações de amplitude variável sem distorção.
 
 Nos dias de hoje o 5G inverte esta tendência de redução. 
 Para garantir a elevada relação sinal-ruído (SNR) exigida por constelações densas e 
